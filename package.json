@@ -4,7 +4,6 @@
   "description": "Proyecto Backend de sistema de gestion de hotel",
   "main": "index.js",
   "type": "module",
-
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon --exec node index.js"
@@ -13,6 +12,9 @@
   "author": "Pablo Moyano",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0"
   }
 }
