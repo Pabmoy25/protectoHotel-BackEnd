@@ -13,3 +13,8 @@ app.listen(app.get('port'), ()=>    {
 
 app.use(cors());
 app.use(morgan('dev'))
+
+app.get('/',(req, res)=> {
+    console.log('prueba de solicitud get');
+    res.send('Respuesta del backend Hotel')
+})
