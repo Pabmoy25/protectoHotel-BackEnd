@@ -5,6 +5,7 @@ import morgan from "morgan";
 import path from 'path'
 import { fileURLToPath } from "url";
 import habitacionesRouter from "./src/routes/habitaciones.routes.js";
+import './src/database/conexionBD.js'
 
 const app = express();
 
