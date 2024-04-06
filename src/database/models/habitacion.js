@@ -50,6 +50,8 @@ const habitacionSchema = new Schema({
   numeroDeHuespedes: {
     type: Number,
     required: true,
+    min: 1,
+    Max: 6,
   },
   estado: {
     type: String,
@@ -60,6 +62,8 @@ const habitacionSchema = new Schema({
   precioTotal: {
     type: Number,
     required: true,
+    min: 10000,
+    Max: 990000,
   },
 });
 
