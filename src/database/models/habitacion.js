@@ -62,3 +62,7 @@ const habitacionSchema = new Schema({
     required: true,
   },
 });
+
+const Habitacion = mongoose.model('habitacion', habitacionSchema);
+
+export default Habitacion;
