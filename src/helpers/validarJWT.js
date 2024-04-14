@@ -2,19 +2,17 @@ import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 
 const validarJWT = (req, res, next) => {
-  //recibir el token
   console.log(req.header);
   const token = req.header("x-token");
   if (!token) {
-    //401 error en la autenticacion
     return res.status(401).json({
-      mensaje: "No hay token en la peticion",
+      mensaje: "No ingresó el token en la peticion",
     });
   }
   // si el token existe
   try {
     const payload = jwt.verify(token, process.env.SECRET_JWT);
-    req._id = payload.uid;
+    req.nombreUsuario = payload.nombreUsuario;
     req.email = payload.email;
     next();
   } catch (error) {
@@ -30,7 +28,7 @@ const validarJWT = (req, res, next) => {
       });
     } else {
       return res.status(401).json({
-        mensaje: "Error en la autenticación",
+        mensaje: "Error de autenticación",
       });
     }
   }
