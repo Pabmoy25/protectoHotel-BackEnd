@@ -1,7 +1,7 @@
 import Usuario from "../database/models/usuarios.js";
 import bcrypt from "bcrypt";
 import generarJWT from "../helpers/generarJWT.js";
-import { validationResult } from "express-validator";
+
 
 export const crearUsuario = async (req, res) => {
   try {
@@ -15,12 +15,7 @@ export const crearUsuario = async (req, res) => {
         .json({ mensaje: "El correo ya se encuentra registrado" });
     }
 
-    const errorsValidacion= validationResult(req);
-
-    if(!errorsValidacion.isEmpty()){
-      return res.status(400).json({errores:errorsValidacion.array()})
-    }
-
+    
     const nuevoUsuario = new Usuario(req.body);
 
     const salt = bcrypt.genSaltSync(10);
