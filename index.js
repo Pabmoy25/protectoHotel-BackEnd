@@ -5,6 +5,7 @@ import morgan from "morgan";
 import path from 'path'
 import { fileURLToPath } from "url";
 import habitacionesRouter from "./src/routes/habitaciones.routes.js";
+import usuariosRouter from "./src/routes/usuarios.routes.js"
 import './src/database/conexionBD.js'
 
 const app = express();
@@ -25,3 +26,4 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname,'/public')))
 
 app.use('/', habitacionesRouter)
+
