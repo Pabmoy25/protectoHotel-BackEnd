@@ -12,7 +12,17 @@ export const crearUsuario = async (req, res) => {
         .json({ mensaje: "El correo ya se encuentra registrado" });
     }
 
-    const nuevoUsuario= new Usuario(req.body);
+    const nuevoUsuario = new Usuario(req.body);
 
-  } catch (error) {}
+    nuevoUsuario.save();
+
+    res.status(201).json({
+      mensaje: "Usuario creado correctamente",
+      email: nuevoUsuario.email,
+      nombre: nuevoUsuario.nombreCompleto,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: "Error al intentar crear un usuario" });
+  }
 };
