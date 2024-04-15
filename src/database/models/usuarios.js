@@ -20,14 +20,26 @@ const usuarioSchema = new mongoose.Schema({
         return pattern.test(value);
       },
     },
+    minLength: 15,
+    maxLength: 30,
   },
   password: {
     type: String,
     require: true,
+    minLength: 6,
+    maxLength: 10,
+    validate: {
+      validator: (value) => {
+        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        return pattern.test(value);
+      },
+    },
   },
   role: {
     type: String,
     require: true,
+    minLength: 7,
+    maxLength: 13,
   },
   nombreCompleto: {
     type: String,

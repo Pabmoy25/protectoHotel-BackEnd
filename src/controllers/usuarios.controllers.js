@@ -2,6 +2,7 @@ import Usuario from "../database/models/usuarios.js";
 import bcrypt from "bcrypt";
 import generarJWT from "../helpers/generarJWT.js";
 
+
 export const crearUsuario = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -13,6 +14,8 @@ export const crearUsuario = async (req, res) => {
         .status(400)
         .json({ mensaje: "El correo ya se encuentra registrado" });
     }
+
+    
     const nuevoUsuario = new Usuario(req.body);
 
     const salt = bcrypt.genSaltSync(10);
