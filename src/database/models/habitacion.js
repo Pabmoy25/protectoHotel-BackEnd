@@ -40,12 +40,10 @@ const habitacionSchema = new Schema({
     MaxLength: 900,
   },
   fechaEntrada: {
-    type: Date,
-    required: true,
+    type: Date,   
   },
   fechaSalida: {
     type: Date,
-    required: true,
   },
   estado: {
     type: String,
