@@ -1,8 +1,13 @@
 import Habitacion from "../database/models/habitacion.js";
 
-export const listarHabitaciones = (req, res) => {
-  console.log("aqui preparo la lista de habitaciones");
-  res.send("Enviando la lista de habitaciones");
+export const listarHabitaciones = async (req, res) => {
+  try {
+    const habitaciones = await Habitacion.find();
+    res.status(200).json(habitaciones);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: "Error al buscar las habitaciones" });
+  }
 };
 
 export const crearHabitaciones = async (req, res) => {
