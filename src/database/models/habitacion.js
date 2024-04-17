@@ -5,19 +5,19 @@ const habitacionSchema = new Schema({
     type: String,
     required: true,
     minLengh: 2,
-    MaxLength: 10,
+    MaxLength: 5,
     unique: true,
   },
   tipoDeHabitacion: {
     type: String,
     required: true,
-    enum: ["Estándar", "Deluxe", "Suite"],
+    enum: ["Estándar", "Doble", "Deluxe", "Suite"],
   },
   precio: {
     type: Number,
     required: true,
     min: 10000,
-    Max: 90000,
+    Max: 100000,
   },
   imagen: {
     type: String,
@@ -30,14 +30,14 @@ const habitacionSchema = new Schema({
   descripcion_breve: {
     type: String,
     required: true,
-    minLengh: 5,
-    MaxLength: 40,
+    minLengh: 20,
+    MaxLength: 100,
   },
   descripcion_amplia: {
     type: String,
     required: true,
     minLengh: 50,
-    MaxLength: 500,
+    MaxLength: 900,
   },
   fechaEntrada: {
     type: Date,
@@ -47,23 +47,11 @@ const habitacionSchema = new Schema({
     type: Date,
     required: true,
   },
-  numeroDeHuespedes: {
-    type: Number,
-    required: true,
-    min: 1,
-    Max: 6,
-  },
   estado: {
     type: String,
     required: true,
-    enum: ["pendiente", "confirmada", "cancelada"],
-    default: "pendiente",
-  },
-  precioTotal: {
-    type: Number,
-    required: true,
-    min: 10000,
-    Max: 990000,
+    enum: ["Libre", "Ocupada"],
+    default: "libre",
   },
 });
 
