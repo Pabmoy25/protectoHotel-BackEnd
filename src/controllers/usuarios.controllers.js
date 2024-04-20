@@ -2,6 +2,16 @@ import Usuario from "../database/models/usuarios.js";
 import bcrypt from "bcrypt";
 import generarJWT from "../helpers/generarJWT.js";
 
+export const leerUsuario = async (req, res) => {
+  try {
+    const usuarios = await Usuario.find();//preg si usuarios es vacio
+    res.status(200).json(usuarios);
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: "Error al buscar usuarios" });
+  }
+}
 
 export const crearUsuario = async (req, res) => {
   try {
