@@ -16,18 +16,19 @@ const usuarioSchema = new mongoose.Schema({
     validate: {
       validator: (value) => {
         const pattern =
-          /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+         // /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
         return pattern.test(value);
       },
     },
     minLength: 15,
-    maxLength: 60,
+    maxLength: 30,
   },
   password: {
     type: String,
     require: true,
     minLength: 6,
-    maxLength: 10,
+    maxLength: 60,
     validate: {
       validator: (value) => {
         const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;

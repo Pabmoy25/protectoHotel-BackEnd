@@ -6,7 +6,7 @@ const router = Router();
 
 router
   .route("/crear").get(leerUsuario)
-  .post(crearUsuario);//[validacionUsuario],
+  .post([validacionUsuario],crearUsuario);//[validacionUsuario],
 
 router.route("/").post(login);
 
