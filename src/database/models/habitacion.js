@@ -48,8 +48,8 @@ const habitacionSchema = new Schema({
   estado: {
     type: String,
     required: true,
-    enum: ["Libre", "Ocupada"],
-    default: "libre",
+    enum: ["Disponible", "No disponible"],
+    default: "Disponible",
   },
 });
 
