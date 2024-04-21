@@ -40,7 +40,7 @@ const habitacionSchema = new Schema({
     MaxLength: 900,
   },
   fechaEntrada: {
-    type: Date,   
+    type: Date,
   },
   fechaSalida: {
     type: Date,
@@ -48,8 +48,7 @@ const habitacionSchema = new Schema({
   estado: {
     type: String,
     required: true,
-    enum: ["Libre", "Ocupada"],
-    default: "libre",
+    enum: ["Disponible", "No disponible"],
   },
 });
 
