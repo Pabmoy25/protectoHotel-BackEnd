@@ -25,3 +25,23 @@ export const crearHabitaciones = async (req, res) => {
     });
   }
 };
+
+export const borrarHabitacion = async (req, res) => {
+  try {
+    const habitacionborrada = await Habitacion.findById(req.params.id);
+    if (!habitacionborrada) {
+      return res
+        .status(404)
+        .json({ mensaje: "No se encontró la habitación con el id especificado" });
+    }
+
+    await Habitacion.findByIdAndDelete(req.params.id, req.body);
+
+    res.status(200).json({ mensaje: "La habitación fue eliminada exitosamente" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ mensaje: "Ocurrio un error no se pudo eliminar la habitación" });
+  }
+};
