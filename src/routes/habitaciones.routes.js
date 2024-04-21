@@ -4,6 +4,8 @@ import {
   listarHabitaciones,
   borrarHabitacion,
   editarHabitacion,
+  obtenerHabitacion,
+
 } from "../controllers/habitaciones.controllers.js";
 import validarJWT from "../helpers/validarJWT.js";
 
@@ -14,8 +16,9 @@ router
   .get(listarHabitaciones)
   .post(/* [validarJWT], */ crearHabitaciones); // [validarJWT] pide token antes de crear, agregarlo en editar y borrar
 router
-  .route("/habitaciones/:id")
+  .route("/habitaciones/:id").get(obtenerHabitacion)
   .put(/* [validarJWT], */ editarHabitacion)
   .delete(borrarHabitacion);
+  
 
 export default router;
