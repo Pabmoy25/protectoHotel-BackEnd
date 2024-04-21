@@ -79,12 +79,6 @@ export const login = async (req, res) => {
       });
     }
 
-    /*
-    res.status(202).json({
-      mensaje: "Usuario existente",
-      email: usuarioBuscado.email,
-      nombre: usuarioBuscado.nombreCompleto//,token
-    });*/
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensaje: "Error al intentar loguear un usuario" });
