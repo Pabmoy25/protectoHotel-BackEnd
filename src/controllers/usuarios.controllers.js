@@ -31,7 +31,7 @@ export const crearUsuario = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
 
     nuevoUsuario.password = bcrypt.hashSync(password, salt);
-
+    
     nuevoUsuario.save();
     res.status(201).json({
       mensaje: "Usuario creado correctamente",
@@ -50,6 +50,8 @@ export const login = async (req, res) => {
 
     const usuarioBuscado = await Usuario.findOne({ email });
 
+    console.log(usuarioBuscado);
+
     if (!usuarioBuscado) {
       return res
         .status(400)
@@ -67,13 +69,12 @@ export const login = async (req, res) => {
         .json({ mensaje: "El correo o la contraseña son incorrectos" });
     }
 
-    const token= await generarJWT(usuarioBuscado.nombreCompleto, usuarioBuscado.email);
+    //const token= await generarJWT(usuarioBuscado.nombreCompleto, usuarioBuscado.email);
 
     res.status(202).json({
       mensaje: "Usuario existente",
       email: usuarioBuscado.email,
-      nombre: usuarioBuscado.nombreCompleto,
-      token
+      nombre: usuarioBuscado.nombreCompleto//,token
     });
   } catch (error) {
     console.error(error);
