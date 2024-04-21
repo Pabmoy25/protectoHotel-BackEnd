@@ -4,14 +4,13 @@ import generarJWT from "../helpers/generarJWT.js";
 
 export const leerUsuario = async (req, res) => {
   try {
-    const usuarios = await Usuario.find();//preg si usuarios es vacio
+    const usuarios = await Usuario.find(); //preg si usuarios es vacio
     res.status(200).json(usuarios);
-    
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensaje: "Error al buscar usuarios" });
   }
-}
+};
 
 export const crearUsuario = async (req, res) => {
   try {
@@ -25,13 +24,12 @@ export const crearUsuario = async (req, res) => {
         .json({ mensaje: "El correo ya se encuentra registrado" });
     }
 
-    
     const nuevoUsuario = new Usuario(req.body);
 
     const salt = bcrypt.genSaltSync(10);
 
     nuevoUsuario.password = bcrypt.hashSync(password, salt);
-    
+
     nuevoUsuario.save();
     res.status(201).json({
       mensaje: "Usuario creado correctamente",
@@ -56,26 +54,32 @@ export const login = async (req, res) => {
       return res
         .status(400)
         .json({ mensaje: "El correo o la contraseña son incorrectos" });
-    }else{
+    } else {
+      const passwordValido = bcrypt.compareSync(
+        password,
+        usuarioBuscado.password
+      );
+
+      if (!passwordValido) {
+        return res
+          .status(400)
+          .json({ mensaje: "El correo o la contraseña son incorrectos" });
+      }
+
+      const token = await generarJWT(
+        usuarioBuscado.nombreCompleto,
+        usuarioBuscado.email
+      );
+
       res.status(200).json({
         mensaje: "Usuario existente",
         email: usuarioBuscado.email,
-        nombre: usuarioBuscado.nombreCompleto
-    })}
-
-    /*const passwordValido = bcrypt.compareSync(
-      password,
-      usuarioBuscado.password
-    );
-
-    if (!passwordValido) {
-      return res
-        .status(400)
-        .json({ mensaje: "El correo o la contraseña son incorrectos" });
+        nombre: usuarioBuscado.nombreCompleto,
+        token,
+      });
     }
 
-    //const token= await generarJWT(usuarioBuscado.nombreCompleto, usuarioBuscado.email);
-
+    /*
     res.status(202).json({
       mensaje: "Usuario existente",
       email: usuarioBuscado.email,
