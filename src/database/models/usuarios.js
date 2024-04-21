@@ -22,13 +22,13 @@ const usuarioSchema = new mongoose.Schema({
       },
     },
     minLength: 15,
-    maxLength: 30,
+    maxLength: 40,
   },
   password: {
     type: String,
     require: true,
     minLength: 6,
-    maxLength: 60,
+    maxLength: 100,
     validate: {
       validator: (value) => {
         const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;

@@ -25,4 +25,4 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use("/", habitacionesRouter);
-app.use("/api/usuarios", usuariosRouter);
+app.use("/api", usuariosRouter);

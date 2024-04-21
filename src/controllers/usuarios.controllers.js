@@ -56,9 +56,14 @@ export const login = async (req, res) => {
       return res
         .status(400)
         .json({ mensaje: "El correo o la contraseña son incorrectos" });
-    }
+    }else{
+      res.status(200).json({
+        mensaje: "Usuario existente",
+        email: usuarioBuscado.email,
+        nombre: usuarioBuscado.nombreCompleto
+    })}
 
-    const passwordValido = bcrypt.compareSync(
+    /*const passwordValido = bcrypt.compareSync(
       password,
       usuarioBuscado.password
     );
@@ -75,7 +80,7 @@ export const login = async (req, res) => {
       mensaje: "Usuario existente",
       email: usuarioBuscado.email,
       nombre: usuarioBuscado.nombreCompleto//,token
-    });
+    });*/
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensaje: "Error al intentar loguear un usuario" });
