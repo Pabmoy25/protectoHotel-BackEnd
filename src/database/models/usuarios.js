@@ -21,13 +21,13 @@ const usuarioSchema = new mongoose.Schema({
         return pattern.test(value);
       },
     },
-    minLength: 15,
+    minLength: 10,
     maxLength: 40,
   },
   password: {
     type: String,
     require: true,
-    minLength: 6,
+    minLength: 3,
     maxLength: 100,
     validate: {
       validator: (value) => {
@@ -41,14 +41,14 @@ const usuarioSchema = new mongoose.Schema({
     require: true,
     minLength: 7,
     maxLength: 13,
-  },
+  },*/
   nombreCompleto: {
     type: String,
     required: true,
-    unique: true,
-    minLength: 4,
-    maxLength: 15,
-  },*/
+    //unique: true,
+    minLength: 3,
+    maxLength: 30,
+  },
 });
 
 const Usuario = mongoose.model("usuario", usuarioSchema);
