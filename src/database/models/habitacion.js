@@ -39,12 +39,6 @@ const habitacionSchema = new Schema({
     minLengh: 50,
     MaxLength: 900,
   },
-  fechaEntrada: {
-    type: Date,
-  },
-  fechaSalida: {
-    type: Date,
-  },
   estado: {
     type: String,
     required: true,
