@@ -14,7 +14,7 @@ export const leerUsuario = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password} = req.body;
 
     const usuarioBuscado = await Usuario.findOne({ email });
 
@@ -29,6 +29,8 @@ export const crearUsuario = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
 
     nuevoUsuario.password = bcrypt.hashSync(password, salt);
+
+    console.log(nuevoUsuario)
 
     nuevoUsuario.save();
     res.status(201).json({
