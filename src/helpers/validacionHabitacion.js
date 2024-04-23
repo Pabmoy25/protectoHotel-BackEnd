@@ -28,19 +28,19 @@ throw new Error('El precio debe estar entre $10.000 y $100.000')
 
    check ('imagen')
    .notEmpty()
-   .withMessage("El número de habitacion es un dato obligatorio"),
+   .withMessage("La imagen es un dato obligatorio"),
 
    check ('descripcion_breve')
    .notEmpty()
-   .withMessage("El número de habitacion es un dato obligatorio"),
+   .withMessage("La decripción breve es un dato obligatorio"),
 
     check ('descripcion_amplia')
     .notEmpty()
-    .withMessage("El número de habitacion es un dato obligatorio"),
+    .withMessage("La decripción amplia es un dato obligatorio"),
 
    check ('estado')
    .notEmpty()
-   .withMessage("El número de habitacion es un dato obligatorio"),
+   .withMessage("El estado de la habitacion es un dato obligatorio"),
 
 
 

@@ -6,7 +6,6 @@ import {
   editarHabitacion,
   obtenerHabitacion,
 } from "../controllers/habitaciones.controllers.js";
-import { check } from "express-validator";
 import validacionHabitacion from "../helpers/validacionHabitacion.js";
 
 const router = Router();
