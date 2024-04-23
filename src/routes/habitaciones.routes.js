@@ -7,63 +7,18 @@ import {
   obtenerHabitacion,
 } from "../controllers/habitaciones.controllers.js";
 import { check } from "express-validator";
+import validacionHabitacion from "../helpers/validacionHabitacion.js";
 
 const router = Router();
 
 router
   .route("/habitaciones")
   .get(listarHabitaciones)
-  .post(
-    [
-      check("habitacion")
-        .notEmpty()
-        .withMessage("El número de habitacion es un dato obligatorio")
-        .isLength({min: 2, max: 5})
-        .withMessage('El número de habitacion debe tener entre 2 y 5 caracteres'),
-
-      check("precio")
-        .notEmpty()
-        .withMessage("El precio es un dato obligatorio")
-        .isNumeric()
-        .withMessage('El precio debe ser un número')
-        .custom((value)=>{
-if(value >50 && value < 10000){
-  return true;
-}else{
-  throw new Error('El precio debe estar entre $10.000 y $100.000')
-}
-        }),
-
-
-        check ('tipoDeHabitacion')
-        .notEmpty()
-       .withMessage("El número de habitacion es un dato obligatorio"),
-
-       check ('imagen')
-       .notEmpty()
-       .withMessage("El número de habitacion es un dato obligatorio"),
-
-       check ('descripcion_breve')
-       .notEmpty()
-       .withMessage("El número de habitacion es un dato obligatorio"),
-
-        check ('descripcion_amplia')
-        .notEmpty()
-        .withMessage("El número de habitacion es un dato obligatorio"),
-
-       check ('estado')
-       .notEmpty()
-       .withMessage("El número de habitacion es un dato obligatorio"),
-
-
-
-      ],
-    crearHabitaciones
-  );
+  .post([validacionHabitacion], crearHabitaciones);
 router
   .route("/habitaciones/:id")
   .get(obtenerHabitacion)
-  .put(editarHabitacion)
+  .put([validacionHabitacion],editarHabitacion)
   .delete(borrarHabitacion);
 
 export default router;
