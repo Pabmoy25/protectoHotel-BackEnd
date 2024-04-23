@@ -1,13 +1,7 @@
 import mongoose from "mongoose";
 
 const usuarioSchema = new mongoose.Schema({
-  /*numHabitacion: {
-        type: String,
-        minLengh: 2,
-        MaxLength: 10,
-        unique: true,
-        require: true,
-    },*/
+
 
   email: {
     type: String,
@@ -28,24 +22,20 @@ const usuarioSchema = new mongoose.Schema({
     type: String,
     require: true,
     minLength: 3,
-    maxLength: 10,
+    maxLength: 100,
     validate: {
       validator: (value) => {
         const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
         return pattern.test(value);
       },
     },
+    unique: true,
   },
-  /*role: {
-    type: String,
-    require: true,
-    minLength: 7,
-    maxLength: 13,
-  },*/
+  
+  
   nombreCompleto: {
     type: String,
     required: true,
-    //unique: true,
     minLength: 3,
     maxLength: 50,
   },
