@@ -28,7 +28,7 @@ const usuarioSchema = new mongoose.Schema({
     type: String,
     require: true,
     minLength: 3,
-    maxLength: 100,
+    maxLength: 10,
     validate: {
       validator: (value) => {
         const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -47,7 +47,7 @@ const usuarioSchema = new mongoose.Schema({
     required: true,
     //unique: true,
     minLength: 3,
-    maxLength: 30,
+    maxLength: 50,
   },
 });
 
