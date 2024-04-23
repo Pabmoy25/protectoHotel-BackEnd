@@ -14,7 +14,7 @@ const validacionHabitacion = [
     .isNumeric()
     .withMessage("El precio debe ser un número")
     .custom((value) => {
-      if (value > 50 && value < 10000) {
+      if (value > 10000 && value < 100000) {
         return true;
       } else {
         throw new Error("El precio debe estar entre $10.000 y $100.000");
