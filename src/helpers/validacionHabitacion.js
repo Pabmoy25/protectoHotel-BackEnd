@@ -28,7 +28,9 @@ throw new Error('El precio debe estar entre $10.000 y $100.000')
 
    check ('imagen')
    .notEmpty()
-   .withMessage("La imagen es un dato obligatorio"),
+   .withMessage("La imagen es un dato obligatorio")
+   .matches(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/)
+   .withMessage("La imagen debe ser una URL valida y terminar con alguna de las siguientes extensiones (jpg|gif|png|jpeg)"),
 
    check ('descripcion_breve')
    .notEmpty()
