@@ -9,7 +9,7 @@
     "dev": "nodemon --exec node index.js"
   },
   "keywords": [],
-  "author": "Pablo Moyano",
+  "author": "Antonella Ortega, Fátima Elena Perea, Pablo Francisco Moyano, Laura Agostina Bellotti, Julián Toranzo Navarro ",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
