@@ -1,6 +1,7 @@
 import Usuario from "../database/models/usuarios.js";
 import bcrypt from "bcrypt";
 import generarJWT from "../helpers/generarJWT.js";
+import { validationResult } from "express-validator";
 
 export const leerUsuario = async (req, res) => {
   try {
@@ -14,6 +15,11 @@ export const leerUsuario = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   try {
+    const errorCrear = validationResult(req);
+    if (!errorCrear.isEmpty()) {
+      return res.status(400).json({ errores: errorCrear.array() });
+    }
+    
     const { email, password} = req.body;
 
     const usuarioBuscado = await Usuario.findOne({ email });
