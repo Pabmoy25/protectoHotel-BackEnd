@@ -5,20 +5,19 @@ import {
   borrarHabitacion,
   editarHabitacion,
   obtenerHabitacion,
-
 } from "../controllers/habitaciones.controllers.js";
-import validarJWT from "../helpers/validarJWT.js";
+import validacionHabitacion from "../helpers/validacionHabitacion.js";
 
 const router = Router();
 
 router
   .route("/habitaciones")
   .get(listarHabitaciones)
-  .post(/* [validarJWT], */ crearHabitaciones); // [validarJWT] pide token antes de crear, agregarlo en editar y borrar
+  .post([validacionHabitacion], crearHabitaciones);
 router
-  .route("/habitaciones/:id").get(obtenerHabitacion)
-  .put(/* [validarJWT], */ editarHabitacion)
+  .route("/habitaciones/:id")
+  .get(obtenerHabitacion)
+  .put([validacionHabitacion],editarHabitacion)
   .delete(borrarHabitacion);
-  
 
 export default router;

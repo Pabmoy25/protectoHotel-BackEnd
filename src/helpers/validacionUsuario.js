@@ -2,15 +2,15 @@ import { check } from "express-validator";
 import resultadoValidacion from "./resultadoValidacion.js";
 
 const validacionUsuario = [
-  /*check("nombreCompleto")
+  check("nombreCompleto")
     .notEmpty()
     .withMessage("El nombre es obligatorio")
-    .isLength({ min: 4, max: 15 })
-    .withMessage("El nombre debe contener entre 4 y 15 caracteres"),*/
+    .isLength({ min: 3, max: 50 })
+    .withMessage("El nombre debe contener entre 4 y 50 caracteres"),
   check("email")
     .notEmpty()
     .withMessage("El e-mail es obligatorio")
-    .isLength({ min: 15, max: 30 })
+    .isLength({ min: 10, max: 40 })
     .withMessage("El e-mail debe contener entre 15 y 30 caracteres")
     .matches( /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
       ///^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i
@@ -19,7 +19,7 @@ const validacionUsuario = [
   check("password")
     .notEmpty()
     .withMessage("La contraseña es obligatoria")
-    .isLength({ min: 6, max: 10 })
+    .isLength({ min: 3, max: 10 })
     .withMessage("La contraseña debe contener entre 6 y 10 caracteres")
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/)
     .withMessage("La contraseña es inválida"),

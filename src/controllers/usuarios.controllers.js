@@ -1,6 +1,7 @@
 import Usuario from "../database/models/usuarios.js";
 import bcrypt from "bcrypt";
 import generarJWT from "../helpers/generarJWT.js";
+import { validationResult } from "express-validator";
 
 export const leerUsuario = async (req, res) => {
   try {
@@ -14,7 +15,12 @@ export const leerUsuario = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const errorCrear = validationResult(req);
+    if (!errorCrear.isEmpty()) {
+      return res.status(400).json({ errores: errorCrear.array() });
+    }
+    
+    const { email, password} = req.body;
 
     const usuarioBuscado = await Usuario.findOne({ email });
 
@@ -29,6 +35,8 @@ export const crearUsuario = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
 
     nuevoUsuario.password = bcrypt.hashSync(password, salt);
+
+    console.log(nuevoUsuario)
 
     nuevoUsuario.save();
     res.status(201).json({
