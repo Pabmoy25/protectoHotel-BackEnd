@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   crearUsuario,
+  editarUsuarios,
   leerUsuario,
   login,
   obtenerUsuarios,
@@ -18,6 +19,8 @@ router.route("/").post(login);
 router
   .route("/:id")
   .get(obtenerUsuarios)
+  .put(editarUsuarios)
+  
 
 
 export default router;

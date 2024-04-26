@@ -112,3 +112,24 @@ export const obtenerUsuarios = async (req, res) => {
       .json({ mensaje: "No se pudo encontrar el usuario solicitado" });
   }
 };
+
+export const editarUsuarios = async (req, res) => {
+  try {
+    const usuarioBuscado = await Usuario.findById(req.params.id);
+    if (!usuarioBuscado) {
+      return res
+        .status(404)
+        .json({
+          mensaje: "El usuario no existe",
+        });
+    }
+    await Usuario.findByIdAndUpdate(req.params.id, req.body);
+   
+    res.status(200).json({ mensaje: "El Usuario fue editado exitosamente" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ mensaje: "No se pudo encontrar el usuario solicitado" });
+  }
+};
