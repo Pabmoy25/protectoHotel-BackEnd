@@ -20,10 +20,7 @@ const reservaSchema = new Schema({
     required: true,
     enum: ["Estándar", "Doble", "Deluxe", "Suite"],
   },
-  /* usuario_id: {
-    type: String,
-    required: true,
-   }, */
+  
   fechaEntrada: {
     type: Date,
     required: true,
@@ -32,12 +29,13 @@ const reservaSchema = new Schema({
     type: Date,
     required: true,
   },
-  /* precioTotal: {
-    type: String,
+  telefono: {
+    type: Number,
     required: true,
-  }, */
-  TotalDeDias: {
-    type: String,
+  },
+  
+  totalDeDias: {
+    type: Number,
     required: true,
   },
   });
