@@ -37,6 +37,8 @@ const reservaSchema = new Schema({
   totalDeDias: {
     type: Number,
     required: true,
+    min: 1,
+    Max: 30,
   },
   });
 
