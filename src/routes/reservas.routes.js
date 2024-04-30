@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { crearReservas, listarReservas, obtenerReserva } from "../controllers/reserva.controllers.js";
+import { crearReservas, crearReservasUsuario, listarReservas, obtenerReserva } from "../controllers/reserva.controllers.js";
 
 const router = Router();
 
@@ -10,5 +10,6 @@ router
   router
   .route("/reservas/:id")
   .get(obtenerReserva)
+  .put(crearReservasUsuario)
 
 export default router
