@@ -1,5 +1,5 @@
 import Reserva from "../database/models/reservas.js";
-
+import Habitacion from "../database/models/habitacion.js";
 
 export const listarReservas = async (req, res) => {
   try {
@@ -48,21 +48,16 @@ export const obtenerReserva = async (req, res) => {
 
 export const crearReservasUsuario = async (req, res) => {
   try {
-    const reservaBuscada = await Reserva.findById(req.params.id);
-    if (!reservaBuscada) {
-      return res
-        .status(404)
-        .json({
-          mensaje: "No se encontro la reserva con el id especificado",
-        });
-    }
-    await Reserva.findByIdAndUpdate(req.params.id, req.body);
-        
-    res.status(200).json({ mensaje: "La Reserva fue creada exitosamente" });
+    const nuevaReserva = new Reserva(req.body);
+    await nuevaReserva.save();
+
+    res.status(201).json({
+      mensaje: "La Reserva se creo exitosamente",
+    });
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ mensaje: "Ocurrio un error no se pudo crear la reserva" });
+    console.log(error);
+    res.status(400).json({
+      mensaje: "La reserva no pudo ser creada",
+    });
   }
 };

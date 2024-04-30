@@ -7,9 +7,12 @@ router
   .route("/reservas")
   .get(listarReservas)
   .post(crearReservas);
+  
   router
   .route("/reservas/:id")
   .get(obtenerReserva)
-  .put(crearReservasUsuario)
+  router
+  .route("/reservas/:id")
+  .post(crearReservasUsuario)
 
 export default router
