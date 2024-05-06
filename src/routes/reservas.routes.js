@@ -1,18 +1,19 @@
 import {Router} from "express";
-import { crearReservas, crearReservasUsuario, listarReservas, obtenerReserva } from "../controllers/reserva.controllers.js";
+import { borrarReserva, crearReservas, listarReservas, reservaHabitacion } from "../controllers/reserva.controllers.js";
 
 const router = Router();
 
 router
   .route("/reservas")
   .get(listarReservas)
-  .post(crearReservas);
+  .post(crearReservas)
   
-  router
-  .route("/reservas/:id")
-  .get(obtenerReserva)
-  router
-  .route("/reservas/:id")
-  .post(crearReservasUsuario)
 
+  router
+  .route("/reservas/:id")
+  .put (reservaHabitacion)
+  .delete(borrarReserva);
+ 
+
+  
 export default router

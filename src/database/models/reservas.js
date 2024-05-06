@@ -1,7 +1,28 @@
 import mongoose, { Schema } from "mongoose";
 
 const reservaSchema = new Schema({
-  
+
+  nombreCompleto: {
+    type: String,
+    required: true,
+    minLength: 3,
+    maxLength: 50,
+  },
+  email: {
+    type: String,
+    require: true,
+    unique: true,
+    validate: {
+      validator: (value) => {
+        const pattern =
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+         // /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+        return pattern.test(value);
+      },
+    },
+    minLength: 10,
+    maxLength: 40,
+  },
   habitacion: {
     type: String,
     required: true,
