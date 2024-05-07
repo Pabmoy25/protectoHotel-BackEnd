@@ -11,12 +11,10 @@ const reservaSchema = new Schema({
   email: {
     type: String,
     require: true,
-    unique: true,
     validate: {
       validator: (value) => {
         const pattern =
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-         // /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
         return pattern.test(value);
       },
     },
@@ -61,7 +59,6 @@ const reservaSchema = new Schema({
     Max: 30,
   },
   });
-
 
 const Reserva = mongoose.model("reserva", reservaSchema);
 export default Reserva;
