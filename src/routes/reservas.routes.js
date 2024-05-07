@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { borrarReserva, crearReservas, listarReservas, reservaHabitacion } from "../controllers/reserva.controllers.js";
+import { borrarReserva, crearReservas, listarReservas} from "../controllers/reserva.controllers.js";
 
 const router = Router();
 
@@ -11,7 +11,6 @@ router
 
   router
   .route("/reservas/:id")
-  .put (reservaHabitacion)
   .delete(borrarReserva);
  
 

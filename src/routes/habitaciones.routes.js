@@ -20,6 +20,6 @@ router
   .put([validacionHabitacion],editarHabitacion)
   .delete(borrarHabitacion);
 
-router.route("/habitaciones/reservaUsuario/:id")
+
 
 export default router;
