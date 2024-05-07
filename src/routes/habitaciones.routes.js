@@ -20,4 +20,6 @@ router
   .put([validacionHabitacion],editarHabitacion)
   .delete(borrarHabitacion);
 
+
+
 export default router;
