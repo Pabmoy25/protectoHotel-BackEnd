@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { borrarReserva, crearReservas, listarReservas} from "../controllers/reserva.controllers.js";
+import { borrarReserva, crearReservas, editarReserva, listarReservas, obtenerReserva} from "../controllers/reserva.controllers.js";
 
 const router = Router();
 
@@ -11,8 +11,9 @@ router
 
   router
   .route("/reservas/:id")
-  .delete(borrarReserva);
- 
+  .delete(borrarReserva)
+  .put(editarReserva)
+  .get (obtenerReserva)
 
   
 export default router

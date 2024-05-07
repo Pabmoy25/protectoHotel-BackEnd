@@ -26,6 +26,7 @@ const reservaSchema = new Schema({
     required: true,
     minLengh: 2,
     MaxLength: 5,
+    
   },
    precio: {
     type: Number,

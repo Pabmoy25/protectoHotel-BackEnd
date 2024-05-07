@@ -7,7 +7,6 @@ import {
   obtenerUsuarios,
 } from "../controllers/usuarios.controllers.js";
 import validacionUsuario from "../helpers/validacionUsuario.js";
-import { editarReserva } from "../controllers/reserva.controllers.js";
 
 const router = Router();
 
@@ -21,7 +20,7 @@ router
   .route("/:id")
   .get(obtenerUsuarios)
   .put(editarUsuarios)
-  .put(editarReserva)
+  
   
 
 
