@@ -1,25 +1,29 @@
 import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema({
-    
-    nombreCompleto: {
-        type: String,
-        required: true,
-        unique: true,
-        minLength: 3,
-        maxLength: 50,
-      },
+  nombreCompleto: {
+    type: String,
+    required: true,
+    unique: true,
+    minLength: 3,
+    maxLength: 50,
+  },
 
   email: {
     type: String,
+    //default:'admin@hakuhuasi.com.ar',
     require: true,
     unique: true,
-    validate: {
+    /*validate: {
       validator: (value) => {
-        const pattern =
-        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-         
+        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
         return pattern.test(value);
+      },
+    },*/
+    validate: {
+      validator: function (value) {
+        return value.includes("admin@hakuhuasi.com.ar");
       },
     },
     minLength: 15,
@@ -41,10 +45,16 @@ const adminSchema = new mongoose.Schema({
 
   roleAdmin: {
     type: Boolean,
-    default: true
+    default:
+    {
+      validator: function () {
+        return this.email;
+      },
+    },
+    
   },
 });
 
 const Admin = mongoose.model("admin", adminSchema);
 
-export default Usuario;
+export default Admin;

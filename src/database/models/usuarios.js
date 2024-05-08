@@ -18,6 +18,7 @@ const usuarioSchema = new mongoose.Schema({
     minLength: 10,
     maxLength: 40,
   },
+
   password: {
     type: String,
     require: true,
@@ -42,7 +43,14 @@ const usuarioSchema = new mongoose.Schema({
   roleAdmin: {
     type: Boolean,
     default: false
+    //default: this.email==='admin@hakuhuasi.com.ar',
+    
   },
+
+  /*roleAdmin: {
+    type: Boolean,
+    //default: false
+  },*/
 });
 
 const Usuario = mongoose.model("usuario", usuarioSchema);
