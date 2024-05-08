@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema({
+    
     nombreCompleto: {
         type: String,
         required: true,
         unique: true,
-        minLength: 4,
-        maxLength: 15,
+        minLength: 3,
+        maxLength: 50,
       },
+
   email: {
     type: String,
     require: true,
@@ -23,10 +25,11 @@ const adminSchema = new mongoose.Schema({
     minLength: 15,
     maxLength: 40,
   },
+
   password: {
     type: String,
     require: true,
-    minLength: 6,
+    minLength: 3,
     maxLength: 100,
     validate: {
       validator: (value) => {
@@ -35,8 +38,10 @@ const adminSchema = new mongoose.Schema({
       },
     },
   },
+
   roleAdmin: {
-    type: Boolean
+    type: Boolean,
+    default: true
   },
 });
 
