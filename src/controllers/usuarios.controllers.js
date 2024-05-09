@@ -25,6 +25,8 @@ export const crearUsuario = async (req, res) => {
 
     const usuarioBuscado = await Usuario.findOne({ email });
 
+    console.log("us buscado + email", usuarioBuscado, email);
+
     if (usuarioBuscado) {
       return res
         .status(400)
@@ -41,28 +43,29 @@ export const crearUsuario = async (req, res) => {
       console.log(admin);
 
       admin.save();
-      
+
       res.status(201).json({
         mensaje: "Usuario admin creado correctamente",
         email: admin.email,
         nombre: admin.nombreCompleto,
       });
+    } else {
+      const nuevoUsuario = new Usuario(req.body);
+
+      const salt = bcrypt.genSaltSync(10);
+
+      nuevoUsuario.password = bcrypt.hashSync(password, salt);
+
+      console.log(nuevoUsuario);
+
+      nuevoUsuario.save();
+      res.status(201).json({
+        mensaje: "Usuario creado correctamente",
+        rol: nuevoUsuario.roleAdmin,
+        email: nuevoUsuario.email,
+        nombre: nuevoUsuario.nombreCompleto,
+      });
     }
-
-    const nuevoUsuario = new Usuario(req.body);
-
-    const salt = bcrypt.genSaltSync(10);
-
-    nuevoUsuario.password = bcrypt.hashSync(password, salt);
-
-    console.log(nuevoUsuario);
-
-    nuevoUsuario.save();
-    res.status(201).json({
-      mensaje: "Usuario creado correctamente",
-      email: nuevoUsuario.email,
-      nombre: nuevoUsuario.nombreCompleto,
-    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensaje: "Error al intentar crear un usuario" });

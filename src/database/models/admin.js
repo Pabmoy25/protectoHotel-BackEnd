@@ -11,7 +11,7 @@ const adminSchema = new mongoose.Schema({
 
   email: {
     type: String,
-    //default:'admin@hakuhuasi.com.ar',
+    default:'admin@hakuhuasi.com.ar',
     require: true,
     unique: true,
     /*validate: {
@@ -48,7 +48,7 @@ const adminSchema = new mongoose.Schema({
     default:
     {
       validator: function () {
-        return this.email;
+        return this.email.includes("admin@hakuhuasi.com.ar");
       },
     },
     

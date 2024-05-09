@@ -42,7 +42,7 @@ const usuarioSchema = new mongoose.Schema({
 
   roleAdmin: {
     type: Boolean,
-    default: false
+    //default: false
     //default: this.email==='admin@hakuhuasi.com.ar',
     
   },
