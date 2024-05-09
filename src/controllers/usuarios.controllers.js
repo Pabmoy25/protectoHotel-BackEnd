@@ -133,7 +133,6 @@ export const login = async (req, res) => {
           mensaje: "Usuario existente",
           email: usuarioBuscado.email,
           nombre: usuarioBuscado.nombreCompleto,
-          
         });
       }
     }
