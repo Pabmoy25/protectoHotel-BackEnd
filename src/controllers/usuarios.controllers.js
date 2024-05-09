@@ -46,10 +46,12 @@ export const crearUsuario = async (req, res) => {
         mensaje: "Usuario admin creado correctamente",
         email: admin.email,
         nombre: admin.nombreCompleto,
-        rolAdmin: admin.rolAdmin
+        rolAdmin: admin.rolAdmin,
       });
     } else {
       const nuevoUsuario = new Usuario(req.body);
+
+      nuevoUsuario.roleAdmin = false;
 
       const salt = bcrypt.genSaltSync(10);
 
@@ -75,37 +77,65 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const usuarioBuscado = await Usuario.findOne({ email });
+    if (email === "admin@hakuhuasi.com.ar") {
+      const adminBuscado = await Admin.findOne({ email });
 
-    console.log(usuarioBuscado);
-
-    if (!usuarioBuscado) {
-      return res
-        .status(400)
-        .json({ mensaje: "El correo o la contraseña son incorrectos" });
-    } else {
-      const passwordValido = bcrypt.compareSync(
-        password,
-        usuarioBuscado.password
-      );
-
-      if (!passwordValido) {
+      if (!adminBuscado) {
         return res
           .status(400)
           .json({ mensaje: "El correo o la contraseña son incorrectos" });
+      } else {
+        const passwordAdminValido = bcrypt.compareSync(
+          password,
+          adminBuscado.password
+        );
+
+        if (!passwordAdminValido) {
+          return res
+            .status(400)
+            .json({ mensaje: "El correo o la contraseña son incorrectos" });
+        }
+
+        const token = await generarJWT(
+          adminBuscado.nombreCompleto,
+          adminBuscado.email
+        );
+
+        res.status(200).json({
+          mensaje: "Usuario existente",
+          email: adminBuscado.email,
+          nombre: adminBuscado.nombreCompleto,
+          token,
+        });
       }
+    } else {
+      const usuarioBuscado = await Usuario.findOne({ email });
 
-      const token = await generarJWT(
-        usuarioBuscado.nombreCompleto,
-        usuarioBuscado.email
-      );
+      console.log(usuarioBuscado);
 
-      res.status(200).json({
-        mensaje: "Usuario existente",
-        email: usuarioBuscado.email,
-        nombre: usuarioBuscado.nombreCompleto,
-        token,
-      });
+      if (!usuarioBuscado) {
+        return res
+          .status(400)
+          .json({ mensaje: "El correo o la contraseña son incorrectos" });
+      } else {
+        const passwordValido = bcrypt.compareSync(
+          password,
+          usuarioBuscado.password
+        );
+
+        if (!passwordValido) {
+          return res
+            .status(400)
+            .json({ mensaje: "El correo o la contraseña son incorrectos" });
+        }
+
+        res.status(200).json({
+          mensaje: "Usuario existente",
+          email: usuarioBuscado.email,
+          nombre: usuarioBuscado.nombreCompleto,
+          
+        });
+      }
     }
   } catch (error) {
     console.error(error);
