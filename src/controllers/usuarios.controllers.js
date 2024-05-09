@@ -25,8 +25,6 @@ export const crearUsuario = async (req, res) => {
 
     const usuarioBuscado = await Usuario.findOne({ email });
 
-    console.log("us buscado + email", usuarioBuscado, email);
-
     if (usuarioBuscado) {
       return res
         .status(400)
@@ -35,7 +33,7 @@ export const crearUsuario = async (req, res) => {
 
     if (email === "admin@hakuhuasi.com.ar") {
       const admin = new Admin(req.body);
-      //admin.roleAdmin = true;
+      admin.roleAdmin = true;
       const salt = bcrypt.genSaltSync(10);
 
       admin.password = bcrypt.hashSync(password, salt);
@@ -48,6 +46,7 @@ export const crearUsuario = async (req, res) => {
         mensaje: "Usuario admin creado correctamente",
         email: admin.email,
         nombre: admin.nombreCompleto,
+        rolAdmin: admin.rolAdmin
       });
     } else {
       const nuevoUsuario = new Usuario(req.body);
