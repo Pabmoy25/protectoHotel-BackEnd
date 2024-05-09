@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const usuarioSchema = new mongoose.Schema({
 
-
   email: {
     type: String,
     require: true,
@@ -15,9 +14,11 @@ const usuarioSchema = new mongoose.Schema({
         return pattern.test(value);
       },
     },
+
     minLength: 10,
     maxLength: 40,
   },
+
   password: {
     type: String,
     require: true,
@@ -32,13 +33,18 @@ const usuarioSchema = new mongoose.Schema({
     unique: true,
   },
   
-  
   nombreCompleto: {
     type: String,
     required: true,
     minLength: 3,
     maxLength: 50,
   },
+
+  roleAdmin: {
+    type: Boolean,
+    
+  },
+
 });
 
 const Usuario = mongoose.model("usuario", usuarioSchema);
