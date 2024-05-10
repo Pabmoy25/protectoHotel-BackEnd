@@ -26,8 +26,8 @@ const reservaSchema = new Schema({
   habitacion: {
     type: String,
     required: true,
-    minLengh: 2,
-    MaxLength: 5,
+    minLength: 2,
+    maxLength: 5,
   },
    precio: {
     type: Number,
