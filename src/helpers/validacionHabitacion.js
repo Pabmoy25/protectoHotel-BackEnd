@@ -54,7 +54,7 @@ const validacionHabitacion = [
   check("estado")
     .notEmpty()
     .withMessage("El estado de la habitacion es un dato obligatorio")
-    .isIn(["Disponible", "No disponible"])
+    .isIn(["Disponible", "No Disponible"])
     .withMessage(
       'El estado debe ser una de las siguientes opciones "Disponible", "No disponible"'
     ),

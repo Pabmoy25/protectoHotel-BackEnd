@@ -4,7 +4,7 @@ const habitacionSchema = new Schema({
   habitacion: {
     type: String,
     required: true,
-    minLengh: 2,
+    minLength: 2,
     MaxLength: 5,
     unique: true,
   },
@@ -30,19 +30,18 @@ const habitacionSchema = new Schema({
   descripcion_breve: {
     type: String,
     required: true,
-    minLengh: 20,
+    minLength: 20,
     MaxLength: 100,
   },
   descripcion_amplia: {
     type: String,
     required: true,
-    minLengh: 50,
+    minLength: 50,
     MaxLength: 900,
   },
   estado: {
     type: String,
     required: true,
-    enum: ["Disponible", "No disponible"],
   },
 });
 
