@@ -15,13 +15,7 @@ const adminSchema = new mongoose.Schema(
       default: "admin@hakuhuasi.com.ar",
       require: true,
       unique: true,
-      /*validate: {
-      validator: (value) => {
-        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-        return pattern.test(value);
-      },
-    },*/
+      
       validate: {
         validator: function (value) {
           return value.includes("admin@hakuhuasi.com.ar");
@@ -52,6 +46,7 @@ const adminSchema = new mongoose.Schema(
 
   {
     virtuals: {
+      rol:{
       rolAdmin: {
         get(){ 
           return this.email.includes("admin@hakuhuasi.com.ar");
@@ -62,6 +57,7 @@ const adminSchema = new mongoose.Schema(
         },
       },
     },
+  }
   },
 
   {

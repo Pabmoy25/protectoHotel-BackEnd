@@ -10,7 +10,7 @@ const usuarioSchema = new mongoose.Schema({
       validator: (value) => {
         const pattern =
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-         // /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+         
         return pattern.test(value);
       },
     },
@@ -48,6 +48,7 @@ const usuarioSchema = new mongoose.Schema({
 },
 {
   virtuals: {
+    rol:{
     rolAdmin: {
       get(){ 
         return this.email.includes("admin@hakuhuasi.com.ar");
@@ -58,6 +59,7 @@ const usuarioSchema = new mongoose.Schema({
       },
     },
   },
+}
 },
 
 {
