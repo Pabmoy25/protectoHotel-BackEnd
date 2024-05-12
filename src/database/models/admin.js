@@ -46,16 +46,18 @@ const adminSchema = new mongoose.Schema(
 
     roleAdmin: {
       type: Boolean,
-      
+      default: true
     },
   },
 
   {
     virtuals: {
       rolAdmin: {
-        
-        set() {
-          this.email.includes("admin@hakuhuasi.com.ar");
+        get(){ 
+          return this.email.includes("admin@hakuhuasi.com.ar");
+        },
+        set(v) {
+          this.rolAdmin=v.email.includes("admin@hakuhuasi.com.ar");
         
         },
       },

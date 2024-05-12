@@ -42,10 +42,28 @@ const usuarioSchema = new mongoose.Schema({
 
   roleAdmin: {
     type: Boolean,
-    
+    default: false
   },
 
-});
+},
+{
+  virtuals: {
+    rolAdmin: {
+      get(){ 
+        return this.email.includes("admin@hakuhuasi.com.ar");
+      },
+      set(v) {
+        this.rolAdmin=v.email.includes("admin@hakuhuasi.com.ar");
+      
+      },
+    },
+  },
+},
+
+{
+  toJSON: { virtuals: true },
+}
+);
 
 const Usuario = mongoose.model("usuario", usuarioSchema);
 

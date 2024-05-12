@@ -46,7 +46,7 @@ export const crearUsuario = async (req, res) => {
         mensaje: "Usuario admin creado correctamente",
         email: admin.email,
         nombre: admin.nombreCompleto,
-        rolAdmin: admin.rolAdmin,
+        rolAdmin: admin.roleAdmin,
       });
     } else {
       const nuevoUsuario = new Usuario(req.body);
@@ -62,7 +62,7 @@ export const crearUsuario = async (req, res) => {
       nuevoUsuario.save();
       res.status(201).json({
         mensaje: "Usuario creado correctamente",
-        rol: nuevoUsuario.roleAdmin,
+        rolAdmin: nuevoUsuario.roleAdmin,
         email: nuevoUsuario.email,
         nombre: nuevoUsuario.nombreCompleto,
       });
