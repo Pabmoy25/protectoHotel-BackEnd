@@ -42,7 +42,6 @@ const habitacionSchema = new Schema({
   estado: {
     type: String,
     required: true,
-    enum: ["Disponible", "No disponible"],
   },
 });
 

@@ -11,7 +11,6 @@ const reservaSchema = new Schema({
   email: {
     type: String,
     require: true,
-    unique: true,
     validate: {
       validator: (value) => {
         const pattern =
@@ -27,7 +26,7 @@ const reservaSchema = new Schema({
     type: String,
     required: true,
     minLength: 2,
-    maxLength: 5,
+    MaxLength: 5,
   },
    precio: {
     type: Number,
