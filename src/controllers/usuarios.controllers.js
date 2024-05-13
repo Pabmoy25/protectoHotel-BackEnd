@@ -177,3 +177,22 @@ export const editarUsuarios = async (req, res) => {
       .json({ mensaje: "No se pudo encontrar el usuario solicitado" });
   }
 };
+
+
+
+export const borrarUsuario = async (req, res) => {
+  try {
+    const usuarioBuscado = await Usuario.findById(req.params.id);
+
+    if (!usuarioBuscado) {
+      return res.status(404).json({ mensaje: "El usuario no existe" });
+    }
+
+    await Usuario.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ mensaje: "El usuario fue eliminado exitosamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: "Error al intentar eliminar el usuario" });
+  }
+};
