@@ -6,7 +6,10 @@ import { validationResult } from "express-validator";
 
 export const leerUsuario = async (req, res) => {
   try {
-    const usuarios = await Usuario.find(); //preg si usuarios es vacio
+    const usuarios = await Usuario.find(); 
+    if (!usuarios) {
+      res.status(404).json({ mensaje: "No existen usuarios" });
+    }
     res.status(200).json(usuarios);
   } catch (error) {
     console.error(error);
@@ -46,7 +49,7 @@ export const crearUsuario = async (req, res) => {
         mensaje: "Usuario admin creado correctamente",
         email: admin.email,
         nombre: admin.nombreCompleto,
-        rolAdmin: admin.rolAdmin,
+        rolAdmin: admin.roleAdmin,
       });
     } else {
       const nuevoUsuario = new Usuario(req.body);
@@ -62,7 +65,7 @@ export const crearUsuario = async (req, res) => {
       nuevoUsuario.save();
       res.status(201).json({
         mensaje: "Usuario creado correctamente",
-        rol: nuevoUsuario.roleAdmin,
+        rolAdmin: nuevoUsuario.roleAdmin,
         email: nuevoUsuario.email,
         nombre: nuevoUsuario.nombreCompleto,
       });
@@ -105,6 +108,7 @@ export const login = async (req, res) => {
           mensaje: "Usuario existente",
           email: adminBuscado.email,
           nombre: adminBuscado.nombreCompleto,
+          rol: adminBuscado.rolAdmin,
           token,
         });
       }
@@ -133,6 +137,7 @@ export const login = async (req, res) => {
           mensaje: "Usuario existente",
           email: usuarioBuscado.email,
           nombre: usuarioBuscado.nombreCompleto,
+          rol: usuarioBuscado.rolAdmin,
         });
       }
     }
