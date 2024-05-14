@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const usuarioSchema = new mongoose.Schema({
 
-
   email: {
     type: String,
     require: true,
@@ -11,13 +10,15 @@ const usuarioSchema = new mongoose.Schema({
       validator: (value) => {
         const pattern =
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-         // /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+         
         return pattern.test(value);
       },
     },
+
     minLength: 10,
     maxLength: 40,
   },
+
   password: {
     type: String,
     require: true,
@@ -32,14 +33,39 @@ const usuarioSchema = new mongoose.Schema({
     unique: true,
   },
   
-  
   nombreCompleto: {
     type: String,
     required: true,
     minLength: 3,
     maxLength: 50,
   },
-});
+
+  roleAdmin: {
+    type: Boolean,
+    default: false
+  },
+
+},
+{
+  virtuals: {
+    rol:{
+    rolAdmin: {
+      get(){ 
+        return this.email.includes("admin@hakuhuasi.com.ar");
+      },
+      set(v) {
+        this.rolAdmin=v.email.includes("admin@hakuhuasi.com.ar");
+      
+      },
+    },
+  },
+}
+},
+
+{
+  toJSON: { virtuals: true },
+}
+);
 
 const Usuario = mongoose.model("usuario", usuarioSchema);
 
