@@ -5,6 +5,7 @@ import {
   leerUsuario,
   login,
   obtenerUsuarios,
+  borrarUsuario,
 } from "../controllers/usuarios.controllers.js";
 import validacionUsuario from "../helpers/validacionUsuario.js";
 
@@ -16,11 +17,15 @@ router.route("/crear").post([validacionUsuario], crearUsuario) //[validacionUsua
 
 router.route("/").post(login);
 
+router.route("/eliminar/:id").delete(borrarUsuario);
+
+
 router
   .route("/:id")
   .get(obtenerUsuarios)
   .put(editarUsuarios)
-  
+  .delete(borrarUsuario);
+
   
 
 
