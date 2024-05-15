@@ -1,5 +1,5 @@
 import { check } from "express-validator";
-import resultadoValidacionReserva from "./resultadoValidacion.js";
+import resultadoValidacion from "./resultadoValidacion.js";
 
 const validacionReserva = [
   check("habitacion")
@@ -43,10 +43,10 @@ const validacionReserva = [
     .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/),
 
   check("telefono")
-  .notEmpty()
-  .withMessage("El telefono es obligatorio")
-  .matches(/^[0-9]{10}$/)
-  .withMessage("El telefono debe tener 10 digitos"),
+    .notEmpty()
+    .withMessage("El telefono es obligatorio")
+    .matches(/^[0-9]{10}$/)
+    .withMessage("El telefono debe tener 10 digitos"),
 
   check("totalDeDias")
     .notEmpty()
@@ -60,10 +60,7 @@ const validacionReserva = [
     .notEmpty()
     .withMessage("La fecha de salida es obligatoria"),
 
-
-    (req, res, next) => resultadoValidacionReserva(req, res, next),
+  (req, res, next) => resultadoValidacion(req, res, next),
 ];
-
-
 
 export default validacionReserva;
