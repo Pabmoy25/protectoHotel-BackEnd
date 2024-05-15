@@ -42,7 +42,23 @@ const validacionReserva = [
     .withMessage("El e-mail debe contener entre 15 y 30 caracteres")
     .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/),
 
-  
+  check("telefono")
+  .notEmpty()
+  .withMessage("El telefono es obligatorio")
+  .matches(/^[0-9]{10}$/)
+  .withMessage("El telefono debe tener 10 digitos"),
+
+  check("totalDeDias")
+    .notEmpty()
+    .withMessage("El total de días es obligatorio"),
+
+  check("fechaEntrada")
+    .notEmpty()
+    .withMessage("La fecha de entrada es obligatoria"),
+
+  check("fechaSalida")
+    .notEmpty()
+    .withMessage("La fecha de salida es obligatoria"),
 
 
     (req, res, next) => resultadoValidacionReserva(req, res, next),
