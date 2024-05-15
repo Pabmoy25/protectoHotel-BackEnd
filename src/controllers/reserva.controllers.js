@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import Reserva from "../database/models/reservas.js";
 
 
@@ -13,6 +14,12 @@ export const listarReservas = async (req, res) => {
 
 export const crearReservas = async (req, res) => {
   try {
+      const errors = validationResult (req);
+      if (!errors.isEmpty()){
+        return res.status (400).json({errores: errors.array()})
+      }
+
+
     const nuevaReserva = new Reserva(req.body);
     await nuevaReserva.save();
 

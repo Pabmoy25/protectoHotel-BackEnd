@@ -39,10 +39,6 @@ const habitacionSchema = new Schema({
     minLength: 50,
     MaxLength: 900,
   },
-  estado: {
-    type: String,
-    required: true,
-  },
 });
 
 const Habitacion = mongoose.model("habitacion", habitacionSchema);

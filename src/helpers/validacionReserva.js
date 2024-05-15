@@ -1,7 +1,7 @@
 import { check } from "express-validator";
 import resultadoValidacion from "./resultadoValidacion.js";
 
-const validacionHabitacion = [
+const validacionReserva = [
   check("habitacion")
     .notEmpty()
     .withMessage("El número de habitacion es un dato obligatorio")
@@ -29,29 +29,38 @@ const validacionHabitacion = [
       'El tipo de habitacion debe ser una de las siguientes opciones "Estándar", "Doble", "Deluxe", "Suite"'
     ),
 
-  check("imagen")
+  check("nombreCompleto")
     .notEmpty()
-    .withMessage("La imagen es un dato obligatorio")
-    .matches(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/)
-    .withMessage(
-      "La imagen debe ser una URL valida y terminar con alguna de las siguientes extensiones (jpg|gif|png|jpeg)"
-    ),
+    .withMessage("El nombre es obligatorio")
+    .isLength({ min: 3, max: 50 })
+    .withMessage("El nombre debe contener entre 4 y 50 caracteres"),
 
-  check("descripcion_breve")
+  check("email")
     .notEmpty()
-    .withMessage("La decripción breve es un dato obligatorio")
-    .isLength({ min: 20, max: 100 })
-    .withMessage("La descricion breve contener entre 20 y 100 caracteres"),
+    .withMessage("El e-mail es obligatorio")
+    .isLength({ min: 10, max: 40 })
+    .withMessage("El e-mail debe contener entre 15 y 30 caracteres")
+    .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/),
 
-  check("descripcion_amplia")
+  check("telefono")
     .notEmpty()
-    .withMessage("La decripción amplia es un dato obligatorio")
-    .isLength({ min: 50, max: 900 })
-    .withMessage(
-      "El descricion amplia debe contener entre 50 y 900 caracteres"
-    ),
+    .withMessage("El telefono es obligatorio")
+    .matches(/^[0-9]{10}$/)
+    .withMessage("El telefono debe tener 10 digitos"),
+
+  check("totalDeDias")
+    .notEmpty()
+    .withMessage("El total de días es obligatorio"),
+
+  check("fechaEntrada")
+    .notEmpty()
+    .withMessage("La fecha de entrada es obligatoria"),
+
+  check("fechaSalida")
+    .notEmpty()
+    .withMessage("La fecha de salida es obligatoria"),
 
   (req, res, next) => resultadoValidacion(req, res, next),
 ];
 
-export default validacionHabitacion;
+export default validacionReserva;
