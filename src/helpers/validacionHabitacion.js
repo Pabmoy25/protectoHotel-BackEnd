@@ -51,14 +51,6 @@ const validacionHabitacion = [
       "El descricion amplia debe contener entre 50 y 900 caracteres"
     ),
 
-  check("estado")
-    .notEmpty()
-    .withMessage("El estado de la habitacion es un dato obligatorio")
-    .isIn(["Disponible", "No Disponible"])
-    .withMessage(
-      'El estado debe ser una de las siguientes opciones "Disponible", "No disponible"'
-    ),
-
   (req, res, next) => resultadoValidacion(req, res, next),
 ];
 
