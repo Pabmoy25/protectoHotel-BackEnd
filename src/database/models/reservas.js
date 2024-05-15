@@ -51,6 +51,13 @@ const reservaSchema = new Schema({
   telefono: {
     type: Number,
     required: true,
+    validate: {
+      validator: (value) => {
+        const pattern =
+        /^[0-9]{10}$/; 
+        return pattern.test(value);
+      },
+    },
   },
   
   totalDeDias: {
