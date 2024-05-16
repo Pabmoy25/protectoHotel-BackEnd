@@ -24,7 +24,7 @@ router.route("/eliminar/:id").delete(borrarUsuario);
 router
   .route("/:id")
   .get(obtenerUsuarios)
-  .put([validarJWT, validacionUsuario], editarUsuarios)
+  .put([validarJWT], editarUsuarios)
   .delete([validarJWT], borrarUsuario);
 
   
