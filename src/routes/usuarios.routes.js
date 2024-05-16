@@ -14,20 +14,14 @@ const router = Router();
 
 router.route("/listar").get(leerUsuario);
 
-router.route("/crear").post([validarJWT, validacionUsuario], crearUsuario) //[validacionUsuario],
+router.route("/crear").post([validarJWT, validacionUsuario], crearUsuario); //[validacionUsuario],
 
 router.route("/").post(login);
-
-router.route("/eliminar/:id").delete(borrarUsuario);
-
 
 router
   .route("/:id")
   .get(obtenerUsuarios)
   .put([validarJWT], editarUsuarios)
   .delete([validarJWT], borrarUsuario);
-
-  
-
 
 export default router;
