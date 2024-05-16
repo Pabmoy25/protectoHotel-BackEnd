@@ -12,7 +12,7 @@ const validarJWT = (req, res, next) => {
   // si el token existe
   try {
     const payload = jwt.verify(token, process.env.SECRET_JWT);
-    req.nombreUsuario = payload.nombreUsuario;
+    req.nombreCompleto = payload.nombreCompleto;
     req.email = payload.email;
     next();
   } catch (error) {
