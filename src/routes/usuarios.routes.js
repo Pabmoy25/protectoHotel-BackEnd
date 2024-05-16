@@ -14,7 +14,7 @@ const router = Router();
 
 router.route("/listar").get(leerUsuario);
 
-router.route("/crear").post([validarJWT, validacionUsuario], crearUsuario); //[validacionUsuario],
+router.route("/crear").post([validacionUsuario], crearUsuario); //[validacionUsuario],
 
 router.route("/").post(login);
 
