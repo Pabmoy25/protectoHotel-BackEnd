@@ -23,12 +23,7 @@ const validacionUsuario = [
     .withMessage("La contraseña debe contener entre 6 y 10 caracteres")
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/)
     .withMessage("La contraseña es inválida"),
-  /*check("role")
-    .notEmpty()
-    .withMessage("El rol es obligatorio")
-    .isLength({ min: 7, max: 13 })
-    .withMessage("El rol debe contener entre 7 y 13 caracteres"),*/
-
+  
   (req, res, next) => resultadoValidacion(req, res, next),
 ];
 
