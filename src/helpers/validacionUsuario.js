@@ -18,8 +18,8 @@ const validacionUsuario = [
     .notEmpty()
     .withMessage("La contraseña es obligatoria")
     .isLength({ min: 3, max: 8 })
-    .withMessage("La contraseña debe contener entre 6 y 10 caracteres")
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/)
+    .withMessage("La contraseña debe contener hasta 8 caracteres")
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,8}$/)
     .withMessage("La contraseña es inválida"),
 
   (req, res, next) => resultadoValidacion(req, res, next),
