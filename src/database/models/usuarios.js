@@ -26,7 +26,7 @@ const usuarioSchema = new mongoose.Schema({
     maxLength: 100,
     validate: {
       validator: (value) => {
-        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,8}$/;
         return pattern.test(value);
       },
     },
@@ -51,7 +51,7 @@ const usuarioSchema = new mongoose.Schema({
     rol:{
     rolAdmin: {
       get(){ 
-        return this.email.includes("admin@hakuhuasi.com.ar");
+        return this.rolAdmin;
       },
       set(v) {
         this.rolAdmin=v.email.includes("admin@hakuhuasi.com.ar");
