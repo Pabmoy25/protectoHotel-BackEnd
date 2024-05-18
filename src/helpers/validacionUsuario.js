@@ -13,13 +13,13 @@ const validacionUsuario = [
     .isLength({ min: 10, max: 40 })
     .withMessage("El e-mail debe contener entre 15 y 30 caracteres")
     .matches( /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
-      ///^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i
+      
     )
     .withMessage("El e-mail es inválido"),
   check("password")
     .notEmpty()
     .withMessage("La contraseña es obligatoria")
-    .isLength({ min: 3, max: 10 })
+    .isLength({ min: 3, max: 8 })
     .withMessage("La contraseña debe contener entre 6 y 10 caracteres")
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/)
     .withMessage("La contraseña es inválida"),
