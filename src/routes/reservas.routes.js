@@ -14,7 +14,7 @@ const router = Router();
 router
   .route("/reservas")
   .get(listarReservas)
-  .post([validarJWT, validacionReserva], crearReservas);
+  .post([ validacionReserva], crearReservas);
 
 router
   .route("/reservas/:id")
