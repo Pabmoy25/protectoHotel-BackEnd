@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
 const reservaSchema = new Schema({
-
   nombreCompleto: {
     type: String,
     required: true,
@@ -13,9 +12,8 @@ const reservaSchema = new Schema({
     require: true,
     validate: {
       validator: (value) => {
-        const pattern =
-        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-         // /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
         return pattern.test(value);
       },
     },
@@ -28,7 +26,7 @@ const reservaSchema = new Schema({
     minLength: 2,
     MaxLength: 5,
   },
-   precio: {
+  precio: {
     type: Number,
     required: true,
     min: 10000,
@@ -39,7 +37,7 @@ const reservaSchema = new Schema({
     required: true,
     enum: ["Estándar", "Doble", "Deluxe", "Suite"],
   },
-  
+
   fechaEntrada: {
     type: Date,
     required: true,
@@ -53,21 +51,19 @@ const reservaSchema = new Schema({
     required: true,
     validate: {
       validator: (value) => {
-        const pattern =
-        /^[0-9]{10}$/; 
+        const pattern = /^[0-9]{10}$/;
         return pattern.test(value);
       },
     },
   },
-  
+
   totalDeDias: {
     type: Number,
     required: true,
     min: 1,
     Max: 30,
   },
-  });
-
+});
 
 const Reserva = mongoose.model("reserva", reservaSchema);
 export default Reserva;
