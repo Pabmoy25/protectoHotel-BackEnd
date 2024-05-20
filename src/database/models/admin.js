@@ -49,7 +49,7 @@ const adminSchema = new mongoose.Schema(
       rol:{
       rolAdmin: {
         get(){ 
-          return this.email.includes("admin@hakuhuasi.com.ar");
+          return this.rolAdmin;
         },
         set(v) {
           this.rolAdmin=v.email.includes("admin@hakuhuasi.com.ar");

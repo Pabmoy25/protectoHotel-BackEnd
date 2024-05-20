@@ -15,7 +15,7 @@ const usuarioSchema = new mongoose.Schema({
       },
     },
 
-    minLength: 10,
+    minLength: 13,
     maxLength: 40,
   },
 
@@ -51,7 +51,7 @@ const usuarioSchema = new mongoose.Schema({
     rol:{
     rolAdmin: {
       get(){ 
-        return this.email.includes("admin@hakuhuasi.com.ar");
+        return this.rolAdmin;
       },
       set(v) {
         this.rolAdmin=v.email.includes("admin@hakuhuasi.com.ar");
