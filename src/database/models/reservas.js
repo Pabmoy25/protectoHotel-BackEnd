@@ -8,7 +8,7 @@ const reservaSchema = new Schema({
     maxLength: 50,
     validate: {
       validator: (value) => {
-        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        const pattern = /^[a-zA-Z\s]+$/;
         return pattern.test(value);
       },
     },
