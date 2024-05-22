@@ -6,6 +6,12 @@ const reservaSchema = new Schema({
     required: true,
     minLength: 3,
     maxLength: 50,
+    validate: {
+      validator: (value) => {
+        const pattern = /^[a-zA-Z\s]+$/;
+        return pattern.test(value);
+      },
+    },
   },
   email: {
     type: String,
@@ -13,7 +19,6 @@ const reservaSchema = new Schema({
     validate: {
       validator: (value) => {
         const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
         return pattern.test(value);
       },
     },
