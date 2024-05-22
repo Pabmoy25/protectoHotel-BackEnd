@@ -38,6 +38,12 @@ const usuarioSchema = new mongoose.Schema({
     required: true,
     minLength: 3,
     maxLength: 50,
+    validate: {
+      validator: (value) => {
+        const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return pattern.test(value);
+      },
+    },
   },
 
   roleAdmin: {
